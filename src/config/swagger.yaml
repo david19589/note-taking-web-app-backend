@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: Note-Taking App
+  description: API for a note-taking application
+  version: 0.1.9
+
+servers:
+  - url: http://localhost:5000/api
+    description: Local server
+
+paths:
+  /notes:
+    get:
+      tags:
+        - notes
+      summary: Get all notes
+      responses:
+        "200":
+          description: Successfully fetched notes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
