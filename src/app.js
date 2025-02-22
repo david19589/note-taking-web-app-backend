@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import connectToMongo from "./config/mongo.js";
 import noteRouter from "./routes/note-router.js";
@@ -11,6 +12,7 @@ dotenv.config();
 connectToMongo();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use("/api", noteRouter);
 app.use("/", ...swaggerMiddleware());
