@@ -23,3 +23,18 @@ paths:
                 type: array
                 items:
                   type: string
+
+  /users:
+    get:
+      tags:
+        - users
+      summary: Get all users
+      responses:
+        "200":
+          description: Successfully fetched users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string

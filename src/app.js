@@ -6,6 +6,7 @@ import cors from "cors";
 import connectToMongo from "./config/mongo.js";
 import noteRouter from "./routes/note-router.js";
 import swaggerMiddleware from "./middlewares/swagger-middleware.js";
+import userRouter from "./routes/user-router.js";
 
 const app = express();
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/api", noteRouter);
+app.use("/api", userRouter);
 app.use("/", ...swaggerMiddleware());
 
 app.listen(5000);
