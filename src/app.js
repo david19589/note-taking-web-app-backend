@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/api", noteRouter);
-app.use("/api", userRouter);
+app.use("/api/auth", userRouter);
 app.use("/", ...swaggerMiddleware());
 
 app.listen(5000);
