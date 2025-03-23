@@ -72,6 +72,33 @@ export const login = async (req, res) => {
   }
 };
 
+export const googleAuth = async (req, res) => {
+  try {
+    const { userEmail } = req.body;
+
+    if (!userEmail) {
+      return res.status(400).json({ message: "Missing email" });
+    }
+    let user = await User.findOne({ userEmail });
+
+    if (user) {
+      return res
+        .status(200)
+        .json({ message: "User logged in successfully", user });
+    }
+
+    user = new User({ userEmail });
+    await user.save();
+
+    return res
+      .status(201)
+      .json({ message: "User registered successfully", user });
+  } catch (err) {
+    console.error("Error adding user:", err);
+    res.status(500).json({ message: "Error adding user", err });
+  }
+};
+
 export const forgotPassword = async (req, res) => {
   const { userEmail } = req.body;
 
