@@ -5,8 +5,10 @@ info:
   version: 0.1.9
 
 servers:
-  - url: http://localhost:5000/api/auth
+  - url: http://localhost:5000/api
     description: Local server
+  - url: http://localhost:5000/api/auth
+    description: Authentication server
 
 paths:
   /notes:
