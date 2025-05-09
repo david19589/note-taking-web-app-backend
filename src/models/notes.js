@@ -8,6 +8,11 @@ const noteSchema = new Schema({
   content: { type: String, required: true },
   lastEdited: { type: Date, default: Date.now },
   isArchived: { type: Boolean, default: false },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
 });
 
 const Note = mongoose.model("Note", noteSchema);

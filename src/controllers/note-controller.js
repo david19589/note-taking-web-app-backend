@@ -2,7 +2,7 @@ import Note from "../models/notes.js";
 
 export const getAllNotes = async (req, res) => {
   try {
-    const data = await Note.find();
+    const data = await Note.find({ userId: req.user.userId });
     return res.json(data);
   } catch (err) {
     res.status(500).json({ message: "Error fetching notes", err });
@@ -18,6 +18,7 @@ export const postNote = async (req, res) => {
       tags,
       content,
       isArchived,
+      userId: req.user.userId,
     });
 
     const savedNote = await newNote.save();

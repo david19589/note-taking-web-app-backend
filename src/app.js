@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import connectToMongo from "./config/mongo.js";
 import noteRouter from "./routes/note-router.js";
@@ -13,7 +14,13 @@ dotenv.config();
 connectToMongo();
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 
 app.use("/api", noteRouter);
 app.use("/api/auth", userRouter);
