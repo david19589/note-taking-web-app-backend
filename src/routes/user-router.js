@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../middlewares/verify-token.js";
 import {
   createUser,
   forgotPassword,
@@ -7,6 +8,7 @@ import {
   login,
   resetPassword,
   logout,
+  changePassword,
 } from "../controllers/user-controller.js";
 
 const userRouter = express.Router();
@@ -17,6 +19,7 @@ userRouter.post("/login", login);
 userRouter.post("/google-auth", googleAuth);
 userRouter.post("/forgot-password", forgotPassword);
 userRouter.post("/reset-password", resetPassword);
+userRouter.post("/change-password", verifyToken, changePassword);
 userRouter.post("/logout", logout);
 
 export default userRouter;
